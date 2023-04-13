@@ -2,6 +2,9 @@ package com.bikkadit.electronic.store.ElectronicStore.services;
 
 import com.bikkadit.electronic.store.ElectronicStore.dtos.CategoryDto;
 import com.bikkadit.electronic.store.ElectronicStore.dtos.PageableResponse;
+import com.bikkadit.electronic.store.ElectronicStore.dtos.UserDto;
+
+import java.util.List;
 
 public interface CategoryService {
 
@@ -22,4 +25,5 @@ public interface CategoryService {
     CategoryDto get(Long categoryId);
 
     //search
+    List<CategoryDto> searchCategory(String keyword);
 }
