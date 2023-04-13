@@ -4,6 +4,7 @@ import com.bikkadit.electronic.store.ElectronicStore.dtos.CategoryDto;
 import com.bikkadit.electronic.store.ElectronicStore.dtos.PageableResponse;
 import com.bikkadit.electronic.store.ElectronicStore.entities.Category;
 import com.bikkadit.electronic.store.ElectronicStore.exceptions.ResourceNotFoundException;
+import com.bikkadit.electronic.store.ElectronicStore.helper.AppConstants;
 import com.bikkadit.electronic.store.ElectronicStore.helper.Helper;
 import com.bikkadit.electronic.store.ElectronicStore.repositories.CategoryRepository;
 import com.bikkadit.electronic.store.ElectronicStore.services.CategoryService;
@@ -14,6 +15,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class CategoryServiceImpl implements CategoryService {
@@ -27,6 +30,7 @@ public class CategoryServiceImpl implements CategoryService {
     public CategoryDto create(CategoryDto categoryDto) {
         Category category = modelMapper.map(categoryDto, Category.class);
         Category savedCategory = categoryRepository.save(category);
+        savedCategory.setIsactive(AppConstants.YES);
         return modelMapper.map(savedCategory, CategoryDto.class);
     }
 
@@ -63,5 +67,10 @@ public class CategoryServiceImpl implements CategoryService {
     public CategoryDto get(Long categoryId) {
         Category category = categoryRepository.findById(categoryId).orElseThrow(() -> new ResourceNotFoundException("Category not found with given id !!"));
         return modelMapper.map(category, CategoryDto.class);
+    }
+
+    @Override
+    public List<CategoryDto> searchCategory(String keyword) {
+        return null;
     }
 }
