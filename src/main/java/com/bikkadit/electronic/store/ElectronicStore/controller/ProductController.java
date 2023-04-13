@@ -41,7 +41,7 @@ public class ProductController {
     //delete
 
     @DeleteMapping("/{productId}")
-    public ResponseEntity<ApiResponseMessage> deleteUser(@PathVariable Long productId) {
+    public ResponseEntity<ApiResponseMessage> deleteproduct(@PathVariable Long productId) {
         log.info("Initiating request for delete product with:{}", productId);
         productService.delete(productId);
         ApiResponseMessage message = ApiResponseMessage.builder()
